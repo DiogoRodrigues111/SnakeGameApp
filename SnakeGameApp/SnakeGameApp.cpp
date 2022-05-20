@@ -5,9 +5,10 @@
 #include <list>
 #include <map>
 
-// C Standard
 extern "C" 
 {
+	// C Standard
+
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <Windows.h>
@@ -254,7 +255,7 @@ void System::_draw()
 void _sleep_ms(long ms)
 {
 	int i, j;
-	for (i = 0; i < 6500 /1000; i++)
+	for (i = 0; i < 65000 /1000; i++)
 		for (j = 0; j < ms % 60; j++)
 			continue;
 }
