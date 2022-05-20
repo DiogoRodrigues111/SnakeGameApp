@@ -5,12 +5,15 @@
 #include <list>
 #include <map>
 
-// C
-#include <stdio.h>
-#include <stdlib.h>
-#include <Windows.h>
-#include <time.h>
-#include <conio.h>
+// C Standard
+extern "C" 
+{
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <Windows.h>
+	#include <time.h>
+	#include <conio.h>
+}
 
 
 using namespace std;
@@ -18,8 +21,8 @@ using namespace std;
 #define WIDTH 20
 #define HEIGHT 20
 
-// Position of the location and others stuff.
-// 
+//
+// Position of the location and others stuff. 
 static struct position
 {
 	int x;
@@ -28,8 +31,8 @@ static struct position
 	int frtyY;
 } __align(4);
 
-// Direction of snake in console.
 //
+// Direction of snake in console.
 enum direction
 {
 	STOP = 0,
@@ -39,8 +42,8 @@ enum direction
 	DOWN
 };
 
-// System coords.
 //
+// System class.
 class System
 {
 
@@ -73,20 +76,22 @@ System::~System()
 
 }
 
-// Clear console.
 //
+// Clear console.
 void System::_clr(const char *clrlock)
 {
 	system(clrlock);
 }
 
-// Condition returns TRUE, Its only returns FALSE in main function.
 //
+// Condition returns TRUE, Its only returns FALSE in main function.
 bool System::is_gameover()
 {
 	return gameover;
 }
 
+//
+// Initializer Core game
 void System::_setup()
 {
 	pos.x = WIDTH / 2;
@@ -100,8 +105,8 @@ void System::_setup()
 	gameover = false;
 }
 
-// Logicals stuff
 //
+// Logicals stuff
 void System::_logicals()
 {
 	if (_kbhit())
@@ -127,6 +132,8 @@ void System::_logicals()
 	}
 }
 
+//
+// Directions of the Snake
 void System::_directions()
 {
 	int pvX = tailx[0];
@@ -186,8 +193,8 @@ void System::_directions()
 	}
 }
 
-// Draw stuff.
 //
+// Draw stuff.
 void System::_draw()
 {
 	bool kprint = false;
@@ -242,6 +249,8 @@ void System::_draw()
 	}
 }
 
+//
+// Sleep milliseconds.
 void _sleep_ms(long ms)
 {
 	int i, j;
@@ -264,7 +273,7 @@ int main()
 		sys._directions();
 		sys._draw();
 
-		_sleep_ms(2);
+		Sleep(10);
 	}
 
 	return 0;
